@@ -11,6 +11,17 @@ function setup() {
     //canvas.mouseReleased(endPath);
    
 }
+function getpaint(){
+  var paintRef=database.ref('currentPath')
+  paintRef.on(value,(canvas)=>{
+    currentPath=canvas.val();
+  })
+}
+ function update(){
+  database.ref('/').update({
+    currentPath:currentPath
+  })
+}
 function startPath(){
   currentPath=[];
   paint.push(currentPath);
